@@ -8,7 +8,7 @@
 
 ### Here’s how you can use your movements with Block Sort.
 
-![steps](assets/napkin-selectiom.png "napkin scheme 1")
+![steps](assets/napkin-selection.png "napkin scheme 1")
 
 
 ## Step 1: Divide into Blocks
