@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:29:09 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/10 20:06:00 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:15:20 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 
 
 int ft_strcmp(const char *s1, const char *s2);
+long ft_atol(const char *str);
+
+
 
 #endif // LIBFT_Hss
