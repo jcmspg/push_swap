@@ -7,6 +7,10 @@
     Gradually build a sorted sequence in Stack A by carefully placing elements back from Stack B.
 
 ### Here’s how you can use your movements with Block Sort.
+
+[image]napkin-selectiom.png
+
+
 ## Step 1: Divide into Blocks
 
     Split your numbers into chunks (blocks), based on the total size of the stack. For example, if you have 100 numbers, you can divide them into blocks of 20.
