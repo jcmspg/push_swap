@@ -13,9 +13,13 @@
 
 ## Step 1: Divide into Blocks
 
+
     Split your numbers into chunks (blocks), based on the total size of the stack. For example, if you have 100 numbers, you can divide them into blocks of 20.
     These blocks should be organized by value (e.g., block 1 contains the smallest 20 numbers, block 2 the next 20, etc.).
     Push elements from A to B in chunks using pb.
+
+![step1](assets/step2.png "STEP 1")
+
 
 ### Example:
 
@@ -38,12 +42,17 @@ Now that you've moved a block to Stack B, you need to sort it in B before pushin
         sb to swap the top two elements if needed.
         rb and rrb to rotate Stack B to bring elements into the correct order.
 
+![step2](assets/step2.png "STEP 2")
+
+
 ## Step 3: Push Sorted Blocks Back to Stack A
 
 Once a block is sorted in B, you push the elements back to Stack A.
 
     Use the pa operation to push elements back to A, ensuring you maintain sorted order in A.
     Use rotations (ra/rra) to insert elements at the correct position in Stack A.
+
+![step3](assets/step3.png "STEP 3")
 
 ### Example:
 
