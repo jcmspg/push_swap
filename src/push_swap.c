@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/14 16:56:16 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:21:07 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,25 @@ int main(int argc, char **argv)
     // check if the list is sorted
     if (is_sorted(stack_a))
     {
-        ft_putstr_fd("The list is already sorted\n", 1);
         free_stack(stack_a);
         free_stack(stack_b);
         return (0);
     }
-    else
+    else if(argc > 2 && argc < 7)
     {
-        ft_putstr_fd("The list is not sorted\n", 1);
-        free_stack(stack_a);
-        free_stack(stack_b);
+        if(argc == 3)
+            sort_2(&stack_a);
+        else if(argc == 4)
+            sort_3(&stack_a);
+        else if(argc == 5)
+            sort_4(&stack_a, &stack_b);
+        else if(argc == 6)
+            sort_5(&stack_a, &stack_b);
     }
 
+    // print the stack
+
+    free_stack(stack_a);
+    free_stack(stack_b);
     return (0);
 }

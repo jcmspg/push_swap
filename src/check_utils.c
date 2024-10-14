@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:16:07 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/10 19:03:06 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:16:45 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,29 @@ int	is_number(char *str)
 // checks if the value is an integer
 // if it is, it returns 1
 // if it is not, it returns 0
+// it also checks if the value is within the integer limits
+// it can accept values with multiple 0s before the number,
+// it cannot accept values with multiple - before the number
+// it also checls the length of the number, excluding the - sign and the 0s
 int	is_integer(char *str)
 {
-    long long int	nbr;
+    long 	nbr;
+    int             i;
 
-    nbr = ft_atoi(str);
+    i = 0;
+    if (str[i] == '-')
+        i++;
+    while (str[i] == '0')
+        i++;
+    if (str[i] == '\0')
+        return (1);
+    if (ft_strlen(str + i) > 10)
+        return (0);
+    nbr = ft_atol(str);
     if (nbr > INT_MAX || nbr < INT_MIN)
         return (0);
     return (1);
 }
-
-// checks if there are any duplicates in the stack
-// it reads an array, and stores values in a buffer to compare them
-// if there are duplicates, it returns 0
-// if there are no duplicates, it returns 1
-
 
 // function to check if the values are valid
 // if they are, it returns 1

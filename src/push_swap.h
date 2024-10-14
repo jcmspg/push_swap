@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/14 16:46:25 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:35:07 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,17 @@ int ft_insert_hash(t_hashset *hashset, char *key);
 void ft_free_hash(t_hashset *hashset);
 int ft_duplicate(t_hashset *hashset, char *key);
 
+// sort specific functions for 2 - 7 elements
+void sort_2(t_stack **a);
+void sort_3(t_stack **a);
+void sort_4(t_stack **a, t_stack **b);
+void sort_5(t_stack **a, t_stack **b);
 
+
+// find functions
+int find_min(t_stack *stack);
+int find_max(t_stack *stack);
+int find_second_min(t_stack *stack);
 
 
 #endif
