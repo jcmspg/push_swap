@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/10 20:00:23 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:46:25 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <sys/stat.h>
 # include <stdarg.h>
 # include <math.h>
-
 # include "../inc/lib_ft/libft.h"
 
 # define HASH_SIZE 1000
@@ -81,7 +80,13 @@ void reverse_rotate_b(t_stack **b);
 void reverse_ro_ab(t_stack **a, t_stack **b);
 
 // stack creation functions
+t_node *new_node(int value);
+t_stack *new_stack();
+void node_to_stack(t_stack *stack, int value);
 
+
+// stack free functions
+void free_stack(t_stack *stack);
 
 // check functions
 int is_number(char *str);
