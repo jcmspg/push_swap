@@ -18,7 +18,7 @@
     These blocks should be organized by value (e.g., block 1 contains the smallest 20 numbers, block 2 the next 20, etc.).
     Push elements from A to B in chunks using pb.
 
-![step1](assets/step2.png "STEP 1")
+![step1](assets/step1.png "STEP 1")
 
 
 ### Example:
