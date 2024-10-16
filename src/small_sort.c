@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:48:41 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/14 21:09:39 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:19:51 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	sort_3(t_stack **a)
     else
         swap_a(a);
 }
-
-        
+       
 
 // sort 4 numbers
 void sort_4(t_stack **a, t_stack **b)
@@ -107,3 +106,16 @@ void sort_5(t_stack **a, t_stack **b)
     }
 }
 
+
+// if args are 2, 3, 4 or 5, sort them
+void ft_small_sort(t_stack **a, t_stack **b)
+{
+    if ((*a)->size == 2)
+        sort_2(a);
+    else if ((*a)->size == 3)
+        sort_3(a);
+    else if ((*a)->size == 4)
+        sort_4(a, b);
+    else if ((*a)->size == 5)
+        sort_5(a, b);
+}

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/14 19:35:07 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:59:55 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,25 @@
 # define HASH_SIZE 1000
 
 
+#define SMALL_SIZE_THRESHOLD 50
+#define MEDIUM_SIZE_THRESHOLD 100
+#define LARGE_RANGE_THRESHOLD_1 1000
+#define LARGE_RANGE_THRESHOLD_2 500
+#define LARGE_RANGE_THRESHOLD_3 100
+
+#define BLOCK_SIZE_DIVISOR_SMALL 5
+#define BLOCK_SIZE_DIVISOR_MEDIUM 6
+#define BLOCK_SIZE_DIVISOR_LARGE_1 15
+#define BLOCK_SIZE_DIVISOR_LARGE_2 9
+#define BLOCK_SIZE_DIVISOR_LARGE_3 7
+#define BLOCK_SIZE_DIVISOR_LARGE_4 5
+
 
 // node to store integers in linked list
 typedef struct s_node
 {
 	int value;
+    int index;
 	struct s_node *next;
 	struct s_node *prev;
 } t_node;
@@ -107,12 +121,27 @@ void sort_2(t_stack **a);
 void sort_3(t_stack **a);
 void sort_4(t_stack **a, t_stack **b);
 void sort_5(t_stack **a, t_stack **b);
+void ft_small_sort(t_stack **a, t_stack **b);
+
+// sort functions
+void sort_partition(t_stack **stack);
+void block_sort(t_stack **a, t_stack **b);
 
 
 // find functions
 int find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_second_min(t_stack *stack);
+int find_nth_smallest(t_stack *stack);
 
+// parsing functions
+int ft_parser(t_stack *stack_a, int argc, char **argv);
+
+// partition functions
+int block_size(t_stack **stack);
+void partition_stack(t_stack **stack_a, t_stack **stack_b);
+
+// index functions
+void index_stack(t_stack *stack);
 
 #endif
