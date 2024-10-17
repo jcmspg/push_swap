@@ -37,6 +37,9 @@ int main(int argc, char **argv)
         ft_small_sort(&stack_a, &stack_b);
     else
         block_sort(&stack_a, &stack_b);
+    
+    //print the sorted stack
+    print_stack(stack_a, "stack_a"); 
     free_stack(stack_a);
     free_stack(stack_b);
     return (0);

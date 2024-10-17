@@ -13,10 +13,23 @@
 #include "push_swap.h"
 
 
-void sort_partition(t_stack **stack)
+void print_stack(t_stack *stack, char *stack_name)
+{
+    t_node *temp = stack->head;
+
+    printf("Current state of %s:\n", stack_name);
+    while (temp)
+    {
+        printf("%d ", temp->value);  // Print the value of each node
+        temp = temp->next;           // Move to the next node
+    }
+    printf("\n");  // Print a newline at the end for clarity
+}
+
+/*void sort_partition(t_stack **stack)
 {
     int size;
-    t_node *smallest;
+    t_node *largest;
     t_node *current;
 
     size = (*stack)->size;
@@ -24,28 +37,26 @@ void sort_partition(t_stack **stack)
         return;
     while (size > 0)
     {
-        smallest = (*stack)->head;
+        largest = (*stack)->head;
         current = (*stack)->head->next;
         while (current)
         {
-            if (current->value < smallest->value)
-                smallest = current;
+            if (current->value > largest->value)
+                largest = current;
             current = current->next;
         }
-        while ((*stack)->head != smallest)
+        while ((*stack)->head != largest)
         {
-            if (smallest->index <= size / 2)
+            if (find_position((*stack), largest) <= size / 2)
                 rotate_b(stack);
             else
                 reverse_rotate_b(stack);
         }
-        size--;
+         size--;
     }
-}
+}*/
 
-
-
-static void merge_back_to_a(t_stack **a, t_stack **b)
+void merge_back_to_a(t_stack **a, t_stack **b)
 {
     while ((*b)->size > 0)
     {
@@ -56,6 +67,6 @@ static void merge_back_to_a(t_stack **a, t_stack **b)
 
 void block_sort(t_stack **a, t_stack **b)
 {
-    partition_stack(a, b);
+    partition_and_sort(a, b);
     merge_back_to_a(a, b);
 }

@@ -86,3 +86,20 @@ int find_nth_smallest(t_stack *stack)
     }
     return (nth_smol);
 }
+
+int find_position(t_stack *stack, t_node *node)
+{
+    t_node *current;
+    int position;
+
+    current = stack->head;
+    position = 0;
+    while (current)
+    {
+        if (current == node)
+            return (position);
+        current = current->next;
+        position++;
+    }
+    return (position);
+}
