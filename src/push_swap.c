@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 21:59:34 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:22:27 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int main(int argc, char **argv)
     if (stack_a->size <= 5)
         ft_small_sort(&stack_a, &stack_b);
     else
-        block_sort(&stack_a, &stack_b);
-    
+        partition_and_sort(&stack_a, &stack_b);
     //print the sorted stack
     print_stack(stack_a, "stack_a"); 
     free_stack(stack_a);

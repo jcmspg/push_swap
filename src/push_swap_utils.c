@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:06:33 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/04 20:43:46 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:24:53 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void swap(t_stack **stack)
 {
 	t_node *temp;
 
-	if ((*stack)->size < 2)
+	if ((*stack)->size < 2 || !(*stack)->head->next || !(*stack)->head)
 		return;
 	temp = (*stack)->head;
 	(*stack)->head = (*stack)->head->next;
@@ -34,7 +34,7 @@ void push(t_stack **stack1, t_stack **stack2)
 {
 	t_node *temp;
 
-	if (!(*stack1)->size)
+	if (!(*stack1)->size || !(*stack1)->head || !(*stack2) || !(*stack2)->head)
 		return;
 	temp = (*stack1)->head;
 	(*stack1)->head = (*stack1)->head->next;
@@ -54,7 +54,7 @@ void rotate(t_stack **stack)
 {
 	t_node *temp;
 
-	if ((*stack)->size < 2)
+	if ((*stack)->size < 2 || !(*stack)->head->next || !(*stack)->head)
 		return;
 	temp = (*stack)->head;
 	(*stack)->head = (*stack)->head->next;
@@ -69,7 +69,7 @@ void reverse_rotate(t_stack **stack)
 {
 	t_node *temp;
 
-	if ((*stack)->size < 2)
+	if ((*stack)->size < 2 || !(*stack)->head->next || !(*stack)->head)
 		return;
 	temp = (*stack)->tail;
 	(*stack)->tail = (*stack)->tail->prev;

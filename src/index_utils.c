@@ -5,48 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 21:07:25 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 21:24:52 by joamiran         ###   ########.fr       */
+/*   Created: 2024/10/21 17:52:01 by joamiran          #+#    #+#             */
+/*   Updated: 2024/10/21 20:53:25 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int is_indexed(t_stack *stack)
+
+// Function to assign index to each node in the stack
+void    assign_index(t_stack *stack)
 {
-    t_node *temp;
-
-    temp = stack->head;
-    while (temp)
-    {
-        if (!temp->index)
-            return (0);
-        temp = temp->next;
-    }
-    return (1);
-}
-
-void index_stack(t_stack *stack)
-{
-    t_node *temp;
-    int index;
-    int smallest;
-
+    t_node  *tmp;
+    t_node  *smallest;
+    int     index;
+    int     min_value;
     
-    index = 1;
-    while (!is_indexed(stack))
+    index = 0;
+    while (index < stack->size)
     {
-        smallest = find_nth_smallest(stack);
-        temp = stack->head;
-        while (temp)
+        tmp = stack->head;
+        smallest = stack->head;
+        min_value = stack->head->value;
+        while (tmp)
         {
-            if (temp->value == smallest && !temp->index)
+            if (tmp->index == -1 && tmp->value < min_value)
             {
-                temp->index = index;
-                index++;
-                break;
+                min_value = tmp->value;
+                smallest = tmp;
             }
-            temp = temp->next;
+            tmp = tmp->next;
+        }
+        if (smallest != NULL)
+        {
+            smallest->index = index;
+            index++;
         }
     }
 }
+
+// function to determine if the index is in the given partition
+int is_in_partition(t_node *node, int partition, int block_size)
+{
+    t_node *current;
+    int index_range;
+    
+    index_range = block_size * partition; 
+    current = node;
+    if (current->index >= index_range - block_size && current->index < index_range)
+        return (1);
+    return (0);
+}
+

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:36 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 19:17:34 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:54:04 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,5 @@ int ft_parser(t_stack *stack_a, int argc, char **argv)
     }
     return (0);
 }
+
+

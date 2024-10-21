@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 21:59:55 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:10:18 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,25 +127,37 @@ void ft_small_sort(t_stack **a, t_stack **b);
 void block_sort(t_stack **a, t_stack **b);
 void merge_back_to_a(t_stack **a, t_stack **b);
 
+// sort block functions
+void sort_block(t_stack **a, t_stack **b);
+
 // find functions
 int find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_second_min(t_stack *stack);
 int find_nth_smallest(t_stack *stack);
 int find_position(t_stack *stack, t_node *node);
+t_node *find_min_node(t_stack *stack);
 
 // parsing functions
 int ft_parser(t_stack *stack_a, int argc, char **argv);
 
+// index functions
+void assign_index(t_stack *stack);
+
+
 // partition functions
-int block_size(t_stack **stack);
+int block_sizer(t_stack **stack);
 void partition_sort(t_stack **stack_a, t_stack **stack_b);
-void partition_stack(t_stack **stack_a, t_stack **stack_b);
+void partition_stack(t_stack **stack_a, t_stack **stack_b, int partition);
 void partition_and_sort(t_stack **stack_a, t_stack **stack_b);
+int is_in_partition(t_node *node, int partition, int block_size);
 
 // index functions
 void index_stack(t_stack *stack);
-int is_in_partition(t_stack *stack, int index, int size); 
+
+// sort B functions
+void move_min_to_top(t_stack **stack_b, t_node *min_node);
+void sort_b(t_stack **stack_b);
 
 // debug functions
 void print_stack(t_stack *stack, char *message);

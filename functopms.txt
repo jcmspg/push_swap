@@ -1,0 +1,1 @@
+src/push_swap_utils.c src/check_utils.c src/hash_utils.c src/find_utils.c src/partition_utils.c src/movements.c src/stack_utils.c src/small_sort.c src/block_sort.c src/push_swap.c src/parsing_utils.c src/index_utils.c 

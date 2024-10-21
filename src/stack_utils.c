@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 16:40:59 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 20:08:32 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:33:42 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_node	*new_node(int value)
     if (!node)
         return (NULL);
     node->value = value;
-    node->index = 0;
+    node->index = -1;
     node->next = NULL;
     node->prev = NULL;
     return (node);
