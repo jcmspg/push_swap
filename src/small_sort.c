@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:48:41 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 19:19:51 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:26:56 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void sort_5(t_stack **a, t_stack **b)
         push_a(a, b);
     }
 }
-
 
 // if args are 2, 3, 4 or 5, sort them
 void ft_small_sort(t_stack **a, t_stack **b)

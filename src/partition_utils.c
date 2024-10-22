@@ -6,116 +6,85 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/21 21:34:01 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:06:27 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int block_sizer(t_stack **stack)
-{
-    int size = (*stack)->size;
-    if (size <= 0)
-        return 0;
 
-    int range = find_max(*stack) - find_min(*stack);
-    int block_size = 1;
-    if (size <= SMALL_SIZE_THRESHOLD)
-    {
-        block_size = size / BLOCK_SIZE_DIVISOR_SMALL;
-        if (block_size < 3)
-            block_size = 3;
-    }
-    else if (size <= MEDIUM_SIZE_THRESHOLD)
-    {
-        block_size = size / BLOCK_SIZE_DIVISOR_MEDIUM;
-        if (block_size < 5)
-            block_size = 5;
-    }
-    else
-    {
-        if (range > LARGE_RANGE_THRESHOLD_1)
-            block_size = size / BLOCK_SIZE_DIVISOR_LARGE_1;
-        else if (range > LARGE_RANGE_THRESHOLD_2)
-            block_size = size / BLOCK_SIZE_DIVISOR_LARGE_2;
-        else if (range > LARGE_RANGE_THRESHOLD_3)
-            block_size = size / BLOCK_SIZE_DIVISOR_LARGE_3;
-        else
-            block_size = size / BLOCK_SIZE_DIVISOR_LARGE_4;
-    }
-    if (block_size > 5)
-        block_size = 5;
-    else if (block_size < 1)
-        block_size = 1;
-    return block_size;
+void n_partitions(t_stack *stack)
+{
+    int n_partitions;
+    int size;
+
+    size = stack->size;
+    n_partitions = size / stack->partition_size;
+    if (size % stack->partition_size != 0)
+        n_partitions++;
+    stack->partitions = n_partitions;
 }
 
-
-// Function to partition stack a into a block and send it to stack b
-void partition_stack(t_stack **stack_a, t_stack **stack_b, int partition)
+// function make partition
+void make_partition(t_stack **stack_a, t_stack **stack_b, int partition)
 {
-    int pushed;
     int block_size;
-    int count;
-    t_node *current;
+    int elements_in_partition;
+    
+    block_size = (*stack_a)->partition_size;
+    elements_in_partition = 0;
+    
+    // if the last partition is smaller than the block size
+    // we will only process the elements in the last partition
+    // and not the full block size
+    // this is to ensure we don't process more elements than we have
+    if (partition == (*stack_a)->partitions - 1)
+        block_size = (*stack_a)->size % block_size;
 
-    pushed = 0;
-    block_size = block_sizer(stack_a);
-    while ((*stack_b)->size < block_size && (*stack_a)->size > 0)
+    while (elements_in_partition < block_size && (*stack_a)->size > 0) // Ensure we only process partition-sized elements
     {
-        current = (*stack_a)->head;
-        count = 0;
-        while (pushed < block_size && count++ < (*stack_a)->size)
+        // Check if the current head belongs to the partition
+        if (is_in_partition(*stack_a, (*stack_a)->head, partition))
         {
-            if (is_in_partition(current, partition, block_size))
-            {
-                push_b(stack_a, stack_b);
-                pushed++;
-            }
-            else
-                rotate_a(stack_a);
-            if ((*stack_a)->head == NULL)
-                break;
-            current = (*stack_a)->head;
+            push_b(stack_a, stack_b);  // Push to stack_b
+            elements_in_partition++;   // Increment the count for elements moved to stack_b
+            print_stack(*stack_a, "Stack A");
+            print_stack(*stack_b, "Stack B");
         }
-        if (pushed < block_size)
-            break;
+        else
+        {
+            rotate_a(stack_a);  // Rotate stack_a
+            print_stack(*stack_a, "Stack A");
+        }
     }
+
+    // Print the partition after moving elements
+    print_stack(*stack_b, "final partition");
 }
 
-// Function to sort the partitioned block in stack b and push it back to stack a
-void partition_sort(t_stack **stack_a, t_stack **stack_b)
+
+// function to sort the partition in stack B and merge it back to stack A
+void sort_partition(t_stack **b)
 {
-    if ((*stack_b)->size <= 5)
-        sort_b(stack_b);
-    merge_back_to_a(stack_a, stack_b);
+   small_sort_block(b); 
 }
 
-void partition_and_sort(t_stack **stack_a, t_stack **stack_b)
+// function to apply the block sort algorithm to the stack
+// divide the stack into partitions and sort each partition
+// then merge them back to stack A
+
+void block_sort(t_stack **a, t_stack **b)
 {
-    int partition_max;
-    int partition;
     int i;
 
+    block_sizer(a);
+    n_partitions(*a);
     i = 0;
-    assign_index(*stack_a);
-    //print index
-    while (i++ < (*stack_a)->size)
+    while (i < (*a)->partitions)
     {
-        printf("index: %d\n", (*stack_a)->head->index);
+        make_partition(a, b, i);
+        sort_partition(b);
+        merge_back_to_a(a, b);
+        i++;
     }
-    partition = 0;
-    partition_max = (*stack_a)->size / block_sizer(stack_a);
-
-    while (partition < partition_max)
-    {
-        partition_stack(stack_a, stack_b, partition);
-        partition_sort(stack_a, stack_b);
-        partition++;
-    }
-    printf("Partitioned and sorted\n");
-    print_stack(*stack_a, "stack_a");
-    print_stack(*stack_b, "stack_b");
 }
-
-

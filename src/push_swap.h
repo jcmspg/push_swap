@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/21 21:10:18 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:55:38 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,12 @@
 
 # define HASH_SIZE 1000
 
+#define SMALL_SIZE_THRESHOLD 100
+#define MEDIUM_SIZE_THRESHOLD 500
+#define LARGE_SIZE_THRESHOLD 1000
 
-#define SMALL_SIZE_THRESHOLD 50
-#define MEDIUM_SIZE_THRESHOLD 100
-#define LARGE_RANGE_THRESHOLD_1 1000
-#define LARGE_RANGE_THRESHOLD_2 500
-#define LARGE_RANGE_THRESHOLD_3 100
-
-#define BLOCK_SIZE_DIVISOR_SMALL 5
-#define BLOCK_SIZE_DIVISOR_MEDIUM 6
-#define BLOCK_SIZE_DIVISOR_LARGE_1 15
-#define BLOCK_SIZE_DIVISOR_LARGE_2 9
-#define BLOCK_SIZE_DIVISOR_LARGE_3 7
-#define BLOCK_SIZE_DIVISOR_LARGE_4 5
-
+#define MAX_BLOCK_SIZE 50
+#define MIN_BLOCK_SIZE 3
 
 // node to store integers in linked list
 typedef struct s_node
@@ -58,7 +50,12 @@ typedef struct s_stack
 {
 	t_node *head;
 	t_node *tail;
+    int *array;
 	int size;
+    int partitions;
+    int partition_size;
+    int min;
+    int max;
 } t_stack;
 
 // node to store strings in linked list for hashset
@@ -73,6 +70,13 @@ typedef struct s_hashset
 {
     t_hashnode **array; // array of linked lists
 } t_hashset;
+
+
+// math functions
+double ft_sqrt(double x);
+double ft_mean(int *array, int size);
+double ft_pow(double x, double y);
+double ft_std_dev(int *array, int size);
 
 // movement functions
 void swap(t_stack **stack);
@@ -97,10 +101,12 @@ void reverse_ro_ab(t_stack **a, t_stack **b);
 t_node *new_node(int value);
 t_stack *new_stack();
 void node_to_stack(t_stack *stack, int value);
+void *set_array(t_stack **stack);
+
 
 
 // stack free functions
-void free_stack(t_stack *stack);
+void free_stack(t_stack **stack);
 
 // check functions
 int is_number(char *str);
@@ -127,8 +133,14 @@ void ft_small_sort(t_stack **a, t_stack **b);
 void block_sort(t_stack **a, t_stack **b);
 void merge_back_to_a(t_stack **a, t_stack **b);
 
-// sort block functions
-void sort_block(t_stack **a, t_stack **b);
+void sort_partition(t_stack **b);
+
+//block sort functions
+void small_sort_block(t_stack **b);
+void sort_block_2(t_stack **b);
+void sort_block_3(t_stack **b);
+void sort_block_4(t_stack **b);
+void sort_block_5(t_stack **b);
 
 // find functions
 int find_min(t_stack *stack);
@@ -143,17 +155,14 @@ int ft_parser(t_stack *stack_a, int argc, char **argv);
 
 // index functions
 void assign_index(t_stack *stack);
-
+void print_index(t_stack *stack);
+int is_in_partition(t_stack *stack, t_node *node, int partition);
 
 // partition functions
-int block_sizer(t_stack **stack);
-void partition_sort(t_stack **stack_a, t_stack **stack_b);
-void partition_stack(t_stack **stack_a, t_stack **stack_b, int partition);
-void partition_and_sort(t_stack **stack_a, t_stack **stack_b);
-int is_in_partition(t_node *node, int partition, int block_size);
+void block_sizer(t_stack **stack);
+void n_partitions(t_stack *stack);
+void make_partition(t_stack **stack_a, t_stack **stack_b, int partition);
 
-// index functions
-void index_stack(t_stack *stack);
 
 // sort B functions
 void move_min_to_top(t_stack **stack_b, t_node *min_node);
