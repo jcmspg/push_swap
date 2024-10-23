@@ -6,49 +6,68 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:40:56 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 17:47:51 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:46:04 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void print_stack(t_stack *stack, char *stack_name)
+void selection_sort(t_stack **a, t_stack **b)
 {
-    t_node *temp = stack->head;
+    int i;
+    int min;
+    int max;
 
-    printf("Current state of %s:\n", stack_name);
-    while (temp)
+    i = 0;
+    min = (*a)->min;
+    max = (*a)->max;
+    while (i < (*a)->partition_size)
     {
-        printf("%d ", temp->value);
-        temp = temp->next;
+        if ((*a)->head->value == min || (*a)->head->value == max)
+            push_b(a, b);
+        else
+            rotate_a(a);
+        i++;
     }
-    printf("\n");
-}
-
-void merge_back_to_a(t_stack **a, t_stack **b)
-{
     while ((*b)->size > 0)
-    {
         push_a(a, b);
-        rotate_a(a);
-    }
 }
 
-t_node *find_min_node(t_stack *stack)
+
+void sort_p(t_stack **a, t_stack **b)
 {
-    t_node *temp = stack->head;
-    t_node *min_node = temp;
-
-    while (temp)
-    {
-        if (temp->value < min_node->value)
-            min_node = temp;
-        temp = temp->next;
-    }
-    return min_node;
+    if ((*a)->partition_size > 5 && (*a)->partition_size <= 20)
+        selection_sort(a, b);
+    else if ((*a)->partition_size > 20)
+        merge_sort_partition(a, b, (*a)->partition_size);
 }
 
 
 
+void sort_partition(t_stack **a, t_stack **b)
+{
+    if ((*b)->size == 1)
+        return;
+    else if ((*b)->size <= 5)
+        small_sort_block(b);
+    else
+        sort_p(a, b);
+}
 
+void block_sort(t_stack **a, t_stack **b)
+{
+    int i;
+
+    assign_index(*a);
+    set_array(a);
+    block_sizer(a);
+    n_partitions(*a);
+    assign_partition(a);
+    i = 1;
+    while (i < (*a)->partitions)
+    {
+        push_partition(a, b, i);
+        sort_partition(a, b);
+        i++;
+    }
+}

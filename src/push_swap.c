@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 21:18:19 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:57:59 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ int main(int argc, char **argv)
     t_stack *stack_b;
 
     stack_a = new_stack();
-    //create array of integers of stack_a
-        
     stack_b = new_stack();
-
     if (ft_parser(stack_a, argc, argv))
     {
         free_stack(&stack_a);
         free_stack(&stack_b);
         return (1);
     }
+    
+    print_stack(stack_a, "Stack A");
+
     if (is_sorted(stack_a))
     {
         free_stack(&stack_a);
@@ -93,32 +93,18 @@ int main(int argc, char **argv)
     }
     else 
     {
-        assign_index(stack_a);
-        print_index(stack_a);
-        set_array(&stack_a);
-        //print the array
-        printf("array");
-        for (int i = 0; i < stack_a->size; i++)
-            printf("%d ", stack_a->array[i]);
-        printf("\n");
-
-        block_sizer(&stack_a);
-        //print the partition size
-        printf("Partition size: %d\n", stack_a->partition_size);
-
-        if (stack_a->size <=5)
-            ft_small_sort(&stack_a, &stack_b); 
+        if (stack_a->size > 0 && stack_a->size <=5)
+            ft_small_sort(&stack_a, &stack_b);
+        else
+            block_sort(&stack_a, &stack_b);
     }
-    // print the number of partitions
-    printf("Number of partitions: %d\n", stack_a->partitions);
     //print the partition size
     printf("Partition size: %d\n", stack_a->partition_size);
-    // print the stacks at the end to check if the sorting was successful
-    print_stack(stack_a, "stack_a");
-    print_stack(stack_b, "stack_b");
+
+    print_stack(stack_a, "Stack A");
+    print_stack(stack_b, "Stack B");
     free_stack(&stack_a);
     free_stack(&stack_b);
-
     return (0);
 }
 

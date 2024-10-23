@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:52:01 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 18:53:26 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:10:58 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ void    assign_index(t_stack *stack)
     }
 }
 
+// function to assing the corresponding partition to each node depending on the index, the partition size and the number of partitions
+void assign_partition(t_stack **stack)
+{
+    t_node  *tmp;
+    int     partition;
+    
+    tmp = (*stack)->head;
+    while (tmp)
+    {
+        partition = tmp->index / (*stack)->partition_size;
+        tmp->partition = partition +1;
+        tmp = tmp->next;
+    }
+}
+
+
 // function to print all the nodes and their indexes
 void   print_index(t_stack *stack)
 {
@@ -58,28 +74,14 @@ void   print_index(t_stack *stack)
     }
 }
 
-// function to check if the node is in the partition
-int is_in_partition(t_stack *stack, t_node *node, int partition)
+void print_partition(t_stack *stack)
 {
-    int block_size;
-    int lower_bound;
-    int upper_bound;
-    
-    if (!node)
-        return (0);
+    t_node  *tmp;
 
-    block_size = stack->partition_size;
-    lower_bound = partition * block_size;
-    upper_bound = (partition + 1) * block_size;
-
-    printf("Node index: %d, Partition %d, Block Size: %d, Lower: %d, Upper: %d\n", 
-        node->index, partition, block_size, lower_bound, upper_bound);
-
-
-
-    // Check if node's index falls within the range for this partition
-    if (node->index >= lower_bound && node->index < upper_bound)
-        return (1);
-     return (0);
+    tmp = stack->head;
+    while (tmp)
+    {
+        printf("Value: %d, Partition: %d\n", tmp->value, tmp->partition);
+        tmp = tmp->next;
+    }
 }
-    

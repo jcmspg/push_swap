@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 20:55:38 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:44:54 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_node
 {
 	int value;
     int index;
+    int partition;
 	struct s_node *next;
 	struct s_node *prev;
 } t_node;
@@ -133,7 +134,7 @@ void ft_small_sort(t_stack **a, t_stack **b);
 void block_sort(t_stack **a, t_stack **b);
 void merge_back_to_a(t_stack **a, t_stack **b);
 
-void sort_partition(t_stack **b);
+void sort_partition(t_stack **a, t_stack **b);
 
 //block sort functions
 void small_sort_block(t_stack **b);
@@ -141,6 +142,15 @@ void sort_block_2(t_stack **b);
 void sort_block_3(t_stack **b);
 void sort_block_4(t_stack **b);
 void sort_block_5(t_stack **b);
+
+// merge sort functions
+void merge_sort_partition(t_stack **stack_a, t_stack **stack_b, int partition_size);
+void merge_two_sorted_stacks(t_stack **stack_a, t_stack **stack_b, int size_a, int size_b);
+
+// insertion sort functions
+void selection_sort(t_stack **a, t_stack **b);
+
+
 
 // find functions
 int find_min(t_stack *stack);
@@ -155,20 +165,22 @@ int ft_parser(t_stack *stack_a, int argc, char **argv);
 
 // index functions
 void assign_index(t_stack *stack);
-void print_index(t_stack *stack);
-int is_in_partition(t_stack *stack, t_node *node, int partition);
+void assign_partition(t_stack **stack);
 
 // partition functions
 void block_sizer(t_stack **stack);
 void n_partitions(t_stack *stack);
-void make_partition(t_stack **stack_a, t_stack **stack_b, int partition);
+void push_partition(t_stack **a, t_stack **b, int block);
 
 
 // sort B functions
-void move_min_to_top(t_stack **stack_b, t_node *min_node);
-void sort_b(t_stack **stack_b);
+void move_min_to_top(t_stack **stack_b);
+void sort_b(t_stack **stack);
 
 // debug functions
 void print_stack(t_stack *stack, char *message);
+void print_array(int *array, int size, char *message);
+void print_partition(t_stack *stack);
+void print_index(t_stack *stack);
 
 #endif
