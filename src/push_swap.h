@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/23 19:44:54 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:03:18 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,11 @@ void merge_back_to_a(t_stack **a, t_stack **b);
 void sort_partition(t_stack **a, t_stack **b);
 
 //block sort functions
-void small_sort_block(t_stack **b);
+void small_sort_block(t_stack **a, t_stack **b);
 void sort_block_2(t_stack **b);
 void sort_block_3(t_stack **b);
-void sort_block_4(t_stack **b);
-void sort_block_5(t_stack **b);
+void sort_block_4(t_stack **a, t_stack **b);
+void sort_block_5(t_stack **a, t_stack **b);
 
 // merge sort functions
 void merge_sort_partition(t_stack **stack_a, t_stack **stack_b, int partition_size);
@@ -171,7 +171,7 @@ void assign_partition(t_stack **stack);
 void block_sizer(t_stack **stack);
 void n_partitions(t_stack *stack);
 void push_partition(t_stack **a, t_stack **b, int block);
-
+void move_partitions(t_stack **a, t_stack **b);
 
 // sort B functions
 void move_min_to_top(t_stack **stack_b);

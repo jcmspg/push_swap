@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/23 20:07:08 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:06:24 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,36 @@ void n_partitions(t_stack *stack)
 void push_partition(t_stack **a, t_stack **b, int block)
 {
     int i;
+    int size;
 
-
+    size = (*a)->size;
     i = 0;
-    while (i <= (*a)->partition_size)
+    while (i < size)
     {
         if ((*a)->head->partition == block)
+        {
             push_b(a, b);
+            printf("Pushing %d to stack B, correscpondint to partition %d\n", (*b)->head->value, block);
+        }
         else
             rotate_a(a);
         i++;
     }
 }
 
+void move_partitions(t_stack **a, t_stack **b)
+{
+    int current;
+    int total;
 
-
+    current = 0;
+    total = (*a)->partitions;
+    
+    while (current <= total)
+    {
+        push_partition(a, b, current);
+        current++;
+    }
+    //print the stack
+    print_stack(*a, "Stack A");
+}

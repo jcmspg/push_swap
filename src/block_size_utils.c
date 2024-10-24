@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:49:17 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/23 20:08:12 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:46:09 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,22 @@ void block_sizer(t_stack **stack)
     mean = ft_mean((*stack)->array, (*stack)->size);
     std_dev = ft_std_dev((*stack)->array, (*stack)->size);
     block_size = threshold((*stack)->size);
-    if (mean > 0)
+   
+    if ((*stack)->size > 100)
     {
-        deviation = std_dev / mean;
-        if (deviation > 0.25)
+        if (mean > 0)
         {
-            adjustment = block_size * deviation;
-            if (adjustment > block_size * 0.5)
-                adjustment = block_size * 0.5;
-            block_size += (int)adjustment;
+            deviation = std_dev / mean;
+            if (deviation > 0.25)
+            {
+                adjustment = block_size * deviation;
+                if (adjustment > block_size * 0.5)
+                    adjustment = block_size * 0.5;
+                block_size += (int)adjustment;
+            }
         }
+        if (block_size > (*stack)->size)
+            block_size = (*stack)->size;
     }
-    if (block_size > (*stack)->size)
-        block_size = (*stack)->size;
     (*stack)->partition_size = block_size;
 }
