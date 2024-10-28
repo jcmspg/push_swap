@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:16:58 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/16 22:02:05 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:06:24 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,30 @@ int find_second_min(t_stack *stack)
     }
     return (second_min);
 }
+
+int find_second_max(t_stack *stack)
+{
+    t_node *temp;
+    int max;
+    int second_max;
+
+    temp = stack->head;
+    max = INT_MIN;
+    second_max = INT_MIN;
+    while (temp)
+    {
+        if (temp->value > max)
+        {
+            second_max = max;
+            max = temp->value;
+        }
+        else if (temp->value > second_max && temp->value != max)
+            second_max = temp->value;
+        temp = temp->next;
+    }
+    return (second_max);
+}
+
 
 int find_nth_smallest(t_stack *stack)
 {

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:16:07 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/14 21:16:45 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:19:21 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,13 @@ int check_values(char **values)
 int	is_sorted(t_stack *stack)
 {
     t_node  *current;
-    t_node  *next;
-
+    
     current = stack->head;
-    next = current->next;
-
-    while (next)
+    while (current->next)
     {
-        if (current->value > next->value)
+        if (current->value > current->next->value)
             return (0);
-        current = next;
-        next = next->next;
+        current = current->next;
     }
     return (1);
 }

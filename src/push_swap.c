@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/24 20:51:10 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:42:19 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,23 @@ int main(int argc, char **argv)
         free_stack(&stack_b);
         return (1);
     }
-    
-    print_stack(stack_a, "Stack A");
 
-    if (is_sorted(stack_a))
+    block_sizer(&stack_a);
+    assign_index(stack_a);
+    assign_partition(&stack_a);
+
+    print_stack(stack_a, "Stack A");
+    print_stack(stack_b, "Stack B");
+
+    if (stack_a->size > 1)
     {
-        free_stack(&stack_a);
-        free_stack(&stack_b);
-        return (0);
-    }
-    else 
-    {
-        if (stack_a->size > 0 && stack_a->size <=5)
+        if (stack_a->size <=5)
             ft_small_sort(&stack_a, &stack_b);
         else
             block_sort(&stack_a, &stack_b);
     }
-    //print the partition size
-    printf("Partition size: %d\n", stack_a->partition_size);
-    //print the nyumber of partitions
-    printf("Number of partitions: %d\n", stack_a->partitions);
-
+    print_stack(stack_a, "Stack A");
+    print_stack(stack_b, "Stack B");
     free_stack(&stack_a);
     free_stack(&stack_b);
     return (0);

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:21:13 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/24 20:58:24 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:35:32 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void print_stack(t_stack *stack, char *stack_name)
     while (temp)
     {
         printf("%d ", temp->value);
+        printf("index: %d \n", temp->index);
+        printf("partition: %d \n", temp->partition);
         temp = temp->next;
     }
     printf("\n");
@@ -27,12 +29,8 @@ void print_stack(t_stack *stack, char *stack_name)
 
 void merge_back_to_a(t_stack **a, t_stack **b)
 {
-    while ((*b)->head)
-    {
+    while ((*b)->head != NULL)
         push_a(a, b);
-        rotate_a(a);
-    }
-    print_stack(*a, "Stack B");
 }
 
 t_node *find_min_node(t_stack *stack)
@@ -49,28 +47,3 @@ t_node *find_min_node(t_stack *stack)
     return min_node;
 }
 
-void move_min_to_top(t_stack **stack)
-{
-    int index;
-    t_node *temp;
-    t_node *min_node;
-
-    min_node = find_min_node(*stack);
-    index = 0;
-    temp = (*stack)->head;
-    while (temp != min_node)
-    {
-        temp = temp->next;
-        index++;
-    }
-    if (index < (*stack)->size - index)
-    {
-        while ((*stack)->head != min_node)
-            rotate_b(stack);
-    }
-    else
-    {
-        while ((*stack)->head != min_node)
-            reverse_rotate_b(stack);
-    }
-}

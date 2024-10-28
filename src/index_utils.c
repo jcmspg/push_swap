@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:52:01 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/23 18:10:58 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:28:57 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void    assign_index(t_stack *stack)
         }
     }
 }
-
-// function to assing the corresponding partition to each node depending on the index, the partition size and the number of partitions
-void assign_partition(t_stack **stack)
-{
-    t_node  *tmp;
-    int     partition;
-    
-    tmp = (*stack)->head;
-    while (tmp)
-    {
-        partition = tmp->index / (*stack)->partition_size;
-        tmp->partition = partition +1;
-        tmp = tmp->next;
-    }
-}
-
 
 // function to print all the nodes and their indexes
 void   print_index(t_stack *stack)

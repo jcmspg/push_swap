@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/24 20:03:18 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:06:37 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void selection_sort(t_stack **a, t_stack **b);
 int find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_second_min(t_stack *stack);
+int find_second_max(t_stack *stack);
 int find_nth_smallest(t_stack *stack);
 int find_position(t_stack *stack, t_node *node);
 t_node *find_min_node(t_stack *stack);
@@ -169,7 +170,7 @@ void assign_partition(t_stack **stack);
 
 // partition functions
 void block_sizer(t_stack **stack);
-void n_partitions(t_stack *stack);
+int n_partitions(t_stack *stack);
 void push_partition(t_stack **a, t_stack **b, int block);
 void move_partitions(t_stack **a, t_stack **b);
 

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:06:33 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 18:57:44 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:12:13 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void swap(t_stack **stack)
 
     if ((*stack)->size < 2 || !(*stack)->head->next)
         return; // Nothing to swap
+    if (!(*stack)->head)
+        return; // No elements to swap
+    if ((*stack) == NULL)
+        return; // No stack to swap
 
     first = (*stack)->head;  // Get the first node
     second = first->next;    // Get the second node
@@ -41,7 +45,9 @@ void swap(t_stack **stack)
 void push(t_stack **stack1, t_stack **stack2)
 {
     t_node *temp;
-
+    
+    if (((*stack1) == NULL) || (!(*stack1)->head))
+        return; // No elements to push
     if (!(*stack1)->size || !(*stack1)->head)
         return;  // No elements to push
 
@@ -70,7 +76,13 @@ void rotate(t_stack **stack)
 
 	if ((*stack)->size < 2 || !(*stack)->head->next || !(*stack)->head)
 		return;
-	temp = (*stack)->head;
+    if ((*stack)->head == NULL)
+        return;
+    if ((!*stack))
+        return;
+    
+    temp = (*stack)->head;
+
 	(*stack)->head = (*stack)->head->next;
 	(*stack)->head->prev = NULL;
 	(*stack)->tail->next = temp;
@@ -82,15 +94,26 @@ void rotate(t_stack **stack)
 void reverse_rotate(t_stack **stack)
 {
 	t_node *temp;
-
-	if ((*stack)->size < 2 || !(*stack)->head->next || !(*stack)->head)
+    
+    if ((*stack)->head == NULL)
+        return;
+    if ((!*stack))
+        return;
+    if ((*stack)->size < 2 || !(*stack)->head->next)
 		return;
-	temp = (*stack)->tail;
-	(*stack)->tail = (*stack)->tail->prev;
-	(*stack)->tail->next = NULL;
-	(*stack)->head->prev = temp;
-	temp->next = (*stack)->head;
-	temp->prev = NULL;
-	(*stack)->head = temp;
+
+    temp = (*stack)->tail;	// Get the last node
+    (*stack)->tail = (*stack)->tail->prev; // Move tail
+                                           //
+    if (!(*stack)->tail) // If there's no tail
+        return; // Nothing to reverse rotate
+    printf("temp->value: %d\n", (*stack)->tail->value);
+
+    (*stack)->tail->next = NULL; // Update new tail's next
+    (*stack)->head->prev = temp; // Update head's prev
+    temp->next = (*stack)->head; // Link new tail to head
+                                 // Update head
+    (*stack)->head = temp;
+    temp->prev = NULL;           // New head has no prev
 }
 
