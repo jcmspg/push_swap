@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 16:40:59 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 20:49:52 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:47:58 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_node	*new_node(int value)
     node->value = value;
     node->index = -1;
     node->next = NULL;
-    node->prev = NULL;
     return (node);
 }
 
@@ -84,7 +83,6 @@ void    node_to_stack(t_stack *stack, int value)
     else
     {
         stack->tail->next = node;
-        node->prev = stack->tail;
         stack->tail = node;
     }
     stack->size++;

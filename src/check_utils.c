@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:16:07 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/28 17:19:21 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:22:54 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,20 @@ int	is_sorted(t_stack *stack)
     while (current->next)
     {
         if (current->value > current->next->value)
+            return (0);
+        current = current->next;
+    }
+    return (1);
+}
+
+int is_reverse_sorted(t_stack *stack)
+{
+    t_node  *current;
+    
+    current = stack->head;
+    while (current->next)
+    {
+        if (current->value < current->next->value)
             return (0);
         current = current->next;
     }

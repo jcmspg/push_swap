@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/28 20:06:37 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:33:58 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ typedef struct s_node
     int index;
     int partition;
 	struct s_node *next;
-	struct s_node *prev;
 } t_node;
 
 // stack for sorting
 typedef struct s_stack
 {
 	t_node *head;
-	t_node *tail;
+    t_node *tail;
     int *array;
 	int size;
     int partitions;
@@ -115,6 +114,7 @@ int is_integer(char *str);
 int is_duplicate(t_stack *stack, int value);
 int check_values(char **values);
 int is_sorted(t_stack *stack);
+int is_reverse_sorted(t_stack *stack);
 
 // hash functions
 unsigned int ft_hash(char *str);
@@ -173,6 +173,7 @@ void block_sizer(t_stack **stack);
 int n_partitions(t_stack *stack);
 void push_partition(t_stack **a, t_stack **b, int block);
 void move_partitions(t_stack **a, t_stack **b);
+int count_size(int block, t_stack **stack);
 
 // sort B functions
 void move_min_to_top(t_stack **stack_b);
@@ -183,5 +184,10 @@ void print_stack(t_stack *stack, char *message);
 void print_array(int *array, int size, char *message);
 void print_partition(t_stack *stack);
 void print_index(t_stack *stack);
+
+// optimizer functions
+int optimal_rotation(t_stack *stack, int target_index);
+
+
 
 #endif
