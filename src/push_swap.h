@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/29 22:33:58 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:09:10 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void block_sort(t_stack **a, t_stack **b);
 void merge_back_to_a(t_stack **a, t_stack **b);
 
 void sort_partition(t_stack **a, t_stack **b);
+void sort_parittions(t_stack **a, t_stack **b);
 
 //block sort functions
 void small_sort_block(t_stack **a, t_stack **b);

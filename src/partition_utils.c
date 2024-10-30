@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/29 22:19:37 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:53:23 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ void push_partition(t_stack **a, t_stack **b, int block)
         {
             rotation_distance = optimal_rotation(*a, block);
             if (rotation_distance >= 0)
-                rotate_a(a);
+              rotate_a(a);
             else
-                reverse_rotate_a(a);
+               reverse_rotate_a(a);
         }
     }
 }
-

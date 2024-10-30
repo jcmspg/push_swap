@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:27:13 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/29 19:37:15 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:40:46 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,15 @@ void	sort_block_3(t_stack **b)
 // sort 4 numbers
 void sort_block_4(t_stack **a, t_stack **b)
 {
-    int min;
+    int max;
 
-    min = find_min(*b);
+    max = find_max(*b);
 
     // Push the minimum to stack A
     while ((*b)->size > 3)
     {
-        if ((*b)->head->value == min || (*b)->tail->value == min)
-            if ((*b)->head->value == min)
+        if ((*b)->head->value == max || (*b)->tail->value == max)
+            if ((*b)->head->value == max)
                 push_a(a, b);\
             else
                 reverse_rotate_b(b);
@@ -156,23 +156,20 @@ void sort_block_4(t_stack **a, t_stack **b)
     }
     // Now sort the remaining 3 numbers in stack 
     sort_block_3(b);
-
-    // Push the minimum to the bottom of stack A
-    rotate_a(a);
 }
 
 // sort 5 numbers
 void sort_block_5(t_stack **a, t_stack **b)
 {
-    int min;
+    int max;
 
-    min = find_min(*b);
+    max = find_max(*b);
 
     while ((*b)->size > 4)
     {
-        if ((*b)->head->value == min || (*b)->tail->value == min)
+        if ((*b)->head->value == max || (*b)->tail->value == max)
         {
-            if ((*b)->head->value == min)
+            if ((*b)->head->value == max)
                 push_a(a, b);
             else
                 reverse_rotate_b(b);
@@ -180,7 +177,6 @@ void sort_block_5(t_stack **a, t_stack **b)
         else
             rotate_b(b);
     }
-    rotate_a(a);
     sort_block_4(a, b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:21:13 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/29 22:35:26 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:07:21 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,8 @@ void print_stack(t_stack *stack, char *stack_name)
 
 void merge_back_to_a(t_stack **a, t_stack **b)
 {
- //   int i;
-    
- //   i = 0;
-    while ((*b)->head != NULL)
-    {
+    while ((*b)->size > 0)
         push_a(a, b);
- //       i++;
-    }
- //   while (i > 0)
- //   {
- //       rotate_a(a);
- //       i--;
- //   }
 }
 
 t_node *find_min_node(t_stack *stack)
