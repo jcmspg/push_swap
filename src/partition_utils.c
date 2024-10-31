@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/30 20:53:23 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/31 22:31:46 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,37 @@ void assign_partition(t_stack **stack)
 
 // function check node, and if it is in the partition, push it to stack B
 // handle the case when the last partition is only 1 element
+// it checks all the corresponding indexes of the partition and calculates the distance from the top for each one. then it pushes the one with the smallest distance to the top
+
 void push_partition(t_stack **a, t_stack **b, int block)
 {
     int i;
     int size;
-    int rotation_distance;
-    
+    int closest_index;
+    int distance;
 
-    i = 0;
     size = count_size(block, a);
-    
+    i = 0;
     while (i < size)
     {
-        if ((*a)->head->partition == block)
+        closest_index = find_closest_node(a, block);
+        distance = dist_from_push(a, block, closest_index);
+
+        while ((*a)->head->index != closest_index)
         {
-            push_b(a, b);
-            i++;
-        }
-        else
-        {
-            rotation_distance = optimal_rotation(*a, block);
-            if (rotation_distance >= 0)
-              rotate_a(a);
+            if (distance > 0)
+            {
+                rotate_a(a);
+                distance--;
+            }
             else
-               reverse_rotate_a(a);
+            {
+                reverse_rotate_a(a);
+                distance++;
+            }
         }
+        push_b(a, b);
+        i++;
     }
 }
+

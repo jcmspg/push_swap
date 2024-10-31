@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:48:41 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 17:26:56 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:38:21 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,14 @@ void	sort_3(t_stack **a)
             rotate_a(a);
         }
     }
-    else
-        swap_a(a);
+    else if (third > first && third > second)
+    {
+        if(first > second)
+            reverse_rotate_a(a);
+        else
+            swap_a(a);
+    }
 }
-       
 
 // sort 4 numbers
 void sort_4(t_stack **a, t_stack **b)

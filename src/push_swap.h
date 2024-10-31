@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/30 21:09:10 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/31 22:55:03 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ double ft_sqrt(double x);
 double ft_mean(int *array, int size);
 double ft_pow(double x, double y);
 double ft_std_dev(int *array, int size);
+int ft_abs(int x);
 
 // movement functions
 void swap(t_stack **stack);
@@ -134,7 +135,7 @@ void ft_small_sort(t_stack **a, t_stack **b);
 void block_sort(t_stack **a, t_stack **b);
 void merge_back_to_a(t_stack **a, t_stack **b);
 
-void sort_partition(t_stack **a, t_stack **b);
+void sort_partition(t_stack **b);
 void sort_parittions(t_stack **a, t_stack **b);
 
 //block sort functions
@@ -154,13 +155,16 @@ void selection_sort(t_stack **a, t_stack **b);
 
 
 // find functions
+int find_closest_node(t_stack **a, int partition);
 int find_min(t_stack *stack);
 int find_max(t_stack *stack);
 int find_second_min(t_stack *stack);
 int find_second_max(t_stack *stack);
 int find_nth_smallest(t_stack *stack);
+int find_partition_biggest(t_stack *stack, int partition);
 int find_position(t_stack *stack, t_node *node);
 t_node *find_min_node(t_stack *stack);
+
 
 // parsing functions
 int ft_parser(t_stack *stack_a, int argc, char **argv);
@@ -188,7 +192,12 @@ void print_index(t_stack *stack);
 
 // optimizer functions
 int optimal_rotation(t_stack *stack, int target_index);
+int dist_from_push(t_stack **a, int partition, int index);
 
 
+
+void patience_sort(t_stack **a, t_stack **b);
+void push_back_sort(t_stack **a, t_stack **b, int partition);
+void push_all_to_a(t_stack **a, t_stack **b);
 
 #endif

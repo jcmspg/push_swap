@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:51:29 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/22 19:54:01 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/10/31 22:14:51 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,11 @@ double ft_median(int *array, int size)
     }
     median /= size;
     return (median);
+}
+
+int ft_abs(int n)
+{
+    if (n < 0)
+        return (-n);
+    return (n);
 }
