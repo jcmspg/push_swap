@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:40:56 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/31 23:10:11 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/01 22:55:03 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,18 @@ void block_sort(t_stack **a, t_stack **b)
 
     (*a)->partitions = n_partitions(*a);
     total_partitions = (*a)->partitions;
-    i = 1; 
+    i = total_partitions; 
 
-    while (i <= total_partitions)
+    while (i > 0)
     {
         push_partition(a, b, i);
-        i++;
+        i--;
     }
 
     // now push partitions back to stack A sorting them, starting from the smallest
-    i = total_partitions;
-    while (i > 0)
+    while (i < total_partitions)
     {
-        push_back_sort(a, b, i);
-        i--;
+        lazy_sort(a, b);
+        i++;
     }
 }

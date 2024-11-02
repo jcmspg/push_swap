@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:16:58 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/31 20:47:25 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:49:32 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,28 @@ int find_partition_biggest(t_stack *stack, int partition)
     }
     return (nth_big);
 }
+
+
+int find_partition_smallest(t_stack *stack, int partition)
+{
+    t_node *current;
+    int nth_smol;
+    int i;
+
+    current = stack->head;
+    nth_smol = INT_MAX;
+    i = 0;
+    while(current)
+    {
+        if (current->value < nth_smol && current->partition == partition)
+                nth_smol = current->value;
+        current = current->next;
+    }
+    return (nth_smol);
+}
+
+
+
 
 int find_position(t_stack *stack, t_node *node)
 {

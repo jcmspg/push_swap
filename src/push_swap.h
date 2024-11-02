@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/31 22:55:03 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/02 00:18:14 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ double ft_mean(int *array, int size);
 double ft_pow(double x, double y);
 double ft_std_dev(int *array, int size);
 int ft_abs(int x);
+int ft_max(int a, int b);
 
 // movement functions
 void swap(t_stack **stack);
@@ -162,6 +163,7 @@ int find_second_min(t_stack *stack);
 int find_second_max(t_stack *stack);
 int find_nth_smallest(t_stack *stack);
 int find_partition_biggest(t_stack *stack, int partition);
+int find_partition_smallest(t_stack *stack, int partition);
 int find_position(t_stack *stack, t_node *node);
 t_node *find_min_node(t_stack *stack);
 
@@ -195,9 +197,12 @@ int optimal_rotation(t_stack *stack, int target_index);
 int dist_from_push(t_stack **a, int partition, int index);
 
 
+void lazy_sort(t_stack **a, t_stack **b);
+
+void push_partition_ordered(t_stack **a, t_stack **b, int block);
 
 void patience_sort(t_stack **a, t_stack **b);
-void push_back_sort(t_stack **a, t_stack **b, int partition);
+void push_back_sort(t_stack **a, t_stack **b);
 void push_all_to_a(t_stack **a, t_stack **b);
 
 #endif

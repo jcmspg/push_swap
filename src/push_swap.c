@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/31 19:57:07 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/01 20:40:15 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int main(int argc, char **argv)
     else
         block_sort(&stack_a, &stack_b);
 
-//    print_stack(stack_a, "Stack A");
-//    print_stack(stack_b, "Stack B");
+ //   print_stack(stack_a, "Stack A");
+ //   print_stack(stack_b, "Stack B");
     
 
     free_stack(&stack_a);
