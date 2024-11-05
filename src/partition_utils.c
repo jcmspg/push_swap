@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/01 22:51:33 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:53:30 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,55 +92,38 @@ void push_partition(t_stack **a, t_stack **b, int block)
     }
 }
 
-
-
-//static int find_extreme_node_in_block(t_stack **a, int block, int mode) {
-//    t_node *current = (*a)->head;
-//    int extreme_index = -1;
+//static int find_dist_to_index(t_stack **a, int block, int target_index)
+//{
+//    t_node *tmp;
+//    int target;
+//    int position;
+//    int distance_from_top;
+//    int distance_from_bottom;
 //
-//    // Loop through all elements in the partition block
-//    while (current != NULL) {
-//        if (current->partition == block) {
-//            if (extreme_index == -1 || 
-//               (mode == 1 && current->index < extreme_index) || 
-//               (mode == -1 && current->index > extreme_index)) {
-//                extreme_index = current->index;
-//            }
+//    tmp = (*a)->head;
+//    target = -1;
+//    position = 0;
+//
+//    while (tmp)
+//    {
+//        if (tmp->partition == block && tmp->index == target_index)
+//        {
+//            target = position;
+//            break;
 //        }
-//        current = current->next;
+//        position++;
+//        tmp = tmp->next;
 //    }
-//    return extreme_index;
+//    if (target == -1)
+//        return -1;
+//
+//    distance_from_top = target;
+//    distance_from_bottom = (*a)->size - target - 1;
+//
+//    if (distance_from_top <= distance_from_bottom)
+//        return distance_from_top;
+//    else
+//        return -distance_from_bottom;
 //}
-
-//void push_partition_ordered(t_stack **a, t_stack **b, int block) {
-//    int i;
-//    int size;
-//    int target_index;
-//    int distance;
 //
-//    size = count_size(block, a); // Count how many nodes are in the current partition
-//    i = 0;
-//
-//    while (i < size) {
-//        // Find the smallest or largest index in the partition block
-//        target_index = find_extreme_node_in_block(a, block, 1); // Pass 1 for smallest, -1 for largest
-//        distance = dist_from_push(a, block, target_index);
-//
-//        // Bring the closest extreme element (smallest or largest) to the top of A
-//        while ((*a)->head->index != target_index) {
-//            if (distance > 0) {
-//                rotate_a(a);
-//                distance--;
-//            } else {
-//                reverse_rotate_a(a);
-//                distance++;
-//            }
-//        }
-//        
-//        // Push the smallest or largest element to B
-//        push_b(a, b);
-//        i++;
-//    }
-//}
-
 

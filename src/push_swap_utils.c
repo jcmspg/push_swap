@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:06:33 by joamiran          #+#    #+#             */
-/*   Updated: 2024/10/29 16:47:05 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:48:59 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,9 @@ void reverse_rotate(t_stack **stack)
 {
 	t_node *temp;
     
-    if ((*stack)->head == NULL)
+    if (!(*stack) || !stack || (*stack)->size < 2)
         return;
-    if ((!*stack))
-        return;
-    if ((*stack)->size < 2 || !(*stack)->head->next)
-		return;
-
+    
     temp = (*stack)->head;
     while (temp->next->next)
         temp = temp->next;

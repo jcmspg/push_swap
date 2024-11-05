@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/02 00:18:14 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:58:52 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,9 +197,18 @@ int optimal_rotation(t_stack *stack, int target_index);
 int dist_from_push(t_stack **a, int partition, int index);
 
 
+
+// merge sort functions
+void push_to_b(t_stack **a, t_stack **b);
+void push_sorted_to_a(t_stack **a, t_stack **b);
+
+// cost functions
+int calculate_move_cost(t_stack **a, t_node *node);
+int calculate_cost_to_move_partition(t_stack **a, int partition_index);
+
 void lazy_sort(t_stack **a, t_stack **b);
 
-void push_partition_ordered(t_stack **a, t_stack **b, int block);
+void push_partition_ordered(t_stack **a, t_stack **b);
 
 void patience_sort(t_stack **a, t_stack **b);
 void push_back_sort(t_stack **a, t_stack **b);

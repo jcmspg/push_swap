@@ -6,51 +6,12 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:40:56 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/01 22:55:03 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:37:43 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void selection_sort(t_stack **a, t_stack **b)
-{
-    printf("Selection sort\n");
-    print_stack(*a, "Stack A");
-    print_stack(*b, "Stack B");
-}
-
-void sort_p(t_stack **a, t_stack **b)
-{
-    printf("Sort P\n");
-    print_stack(*a, "Stack A");
-    print_stack(*b, "Stack B");
-}
-
-void sort_partitions(t_stack **a, t_stack **b)
-{
-    int i;
-    int j;
-    int size;
-
-
-    i = 1;
-    while (i <= (*a)->partitions)
-    {
-        size = count_size(i, a);
-        j = 0;
-        while ((*a)->head->partition != i)
-            rotate_a(a);
-        if ((*a)->head->partition == i)
-        {
-            while (j < size)
-            {
-                push_b(a, b);
-                j++;
-            }
-        }
-        i++;
-    }
-}
 
 
 
@@ -58,24 +19,58 @@ void block_sort(t_stack **a, t_stack **b)
 {
     int i;
     int total_partitions;
+    int lowest_cost_partition;
+    int lowest_cost;
+    int cost;
+    int *pushed;
 
     if (*a == NULL || (*a)->head == NULL)
         return ;
 
     (*a)->partitions = n_partitions(*a);
     total_partitions = (*a)->partitions;
-    i = total_partitions; 
+    
+  //  printf("Partitions: %d\n", total_partitions);
+    
+    pushed = (int *)malloc(sizeof(int) * total_partitions + 1);
+    ft_memset(pushed, 0, total_partitions + 1);
 
-    while (i > 0)
+    while (total_partitions > 0)
     {
-        push_partition(a, b, i);
-        i--;
-    }
+        lowest_cost_partition = -1;
+        lowest_cost = INT_MAX;
+        i = 1;
 
-    // now push partitions back to stack A sorting them, starting from the smallest
-    while (i < total_partitions)
-    {
-        lazy_sort(a, b);
-        i++;
+    //    printf("Total partitions left to check: %d\n", total_partitions);
+        
+        while (i <= total_partitions)
+        {
+            if (pushed[i] == 0)
+            {
+                cost = calculate_cost_to_move_partition(a, i);
+      //          printf("Cost to move partition %d: %d\n", i, cost);
+                if (cost < lowest_cost)
+                {
+                    lowest_cost = cost;
+                    lowest_cost_partition = i;
+                }
+            }
+            i++;
+        }
+   //     printf("Lowest cost partition: %d\n", lowest_cost_partition);
+        if (lowest_cost_partition != -1)
+        {
+            push_partition(a, b, lowest_cost_partition);
+     //       printf("Pushed partition %d to B\n", lowest_cost_partition);
+            pushed[lowest_cost_partition] = 1;
+            total_partitions--;
+    //        printf("Partitions left: %d\n", total_partitions);
+        }
+        else
+        {
+   //         printf("Error: no more partitions to push\n");
+            break;
+        }
     }
+    free(pushed);
 }
