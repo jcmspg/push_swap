@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:47 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/05 20:58:52 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:37:35 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void assign_partition(t_stack **stack);
 // partition functions
 void block_sizer(t_stack **stack);
 int n_partitions(t_stack *stack);
-void push_partition(t_stack **a, t_stack **b, int block);
+void push_partition(t_stack **a, t_stack **b, int partition);
 void move_partitions(t_stack **a, t_stack **b);
 int count_size(int block, t_stack **stack);
 

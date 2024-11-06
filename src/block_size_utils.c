@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:49:17 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/05 21:19:58 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:41:36 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int threshold(int size)
     if (size <= SMALL_SIZE_THRESHOLD)
         return (16);
     else if (size <= MEDIUM_SIZE_THRESHOLD)
-        return (size / 20);
+        return (size / 10);
     else if (size <= LARGE_SIZE_THRESHOLD)
         return (size / 50);
     else

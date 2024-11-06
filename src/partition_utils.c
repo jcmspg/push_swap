@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:28:39 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/05 19:53:30 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:38:10 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,33 @@ void push_partition(t_stack **a, t_stack **b, int block)
         i++;
     }
 }
+
+//
+//void push_partition(t_stack **a, t_stack **b)
+//{
+//    if ((*a)->head == NULL)
+//        return ;
+//
+//    int size = (*a)->size;
+//    while ((*a)->size > 2)
+//    {
+//        if ((*a)->head->index == size || (*a)->head->index == size - 1)
+//            rotate_a(a);
+//        else
+//        {
+//            if ((*a)->head->index > size / 2)
+//            {                
+//                push_b(a, b);
+//                rotate_b(b);
+//            }
+//            else
+//                push_b(a, b);
+//        }
+//    }
+//}
+//
+
+
 
 //static int find_dist_to_index(t_stack **a, int block, int target_index)
 //{
