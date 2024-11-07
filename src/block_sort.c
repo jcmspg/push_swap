@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:40:56 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/06 21:37:21 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:29:37 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void block_sort(t_stack **a, t_stack **b)
 
 
     }
+    merge_back(a, b);
     free(pushed);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joamiran <joamiran@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:01:00 by joamiran          #+#    #+#             */
-/*   Updated: 2024/11/06 21:36:45 by joamiran         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:12:27 by joamiran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int main(int argc, char **argv)
          assign_index(stack_a);
          (*stack_a).partitions = n_partitions(stack_a);
          assign_partition(&stack_a);
-    //     push_partition(&stack_a, &stack_b);
          block_sort(&stack_a, &stack_b);
     //   int i = 1;
      //  while (i <= stack_a->partitions)
@@ -49,7 +48,6 @@ int main(int argc, char **argv)
      //  }
 
     }
-     // numver of partitions
 
     free_stack(&stack_a);
     free_stack(&stack_b);
